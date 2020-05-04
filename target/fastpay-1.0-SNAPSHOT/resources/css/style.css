@@ -1,0 +1,159 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 1, 2020, 11:21:21 AM
+    Author     : grace.frank
+*/
+
+body{
+      margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+   
+}
+.heading, .subheading{
+    font-weight: 800;
+    margin-bottom: .1em;
+    margin-top: .1em;
+    color: #224E96;
+}
+.heading{
+    font-size: 2.5rem;
+}
+
+
+.logo {width: 12%;
+margin: 1em;}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+}
+
+nav{
+    margin: auto 0;
+    border-bottom: 2px solid #224E96;
+    width: 70%;
+}
+header hr{
+    border: 3px solid #224E96;
+    margin: 0;
+}
+nav a{
+    font-weight: bold;
+    color:#224E96;
+    text-decoration: none;
+    margin: 0 3em;
+}
+
+nav .link-active{
+    border-bottom: 6px solid #45A6B8;
+}
+
+
+nav a:focus, nav a:hover{
+    color:  #45A6B8;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+footer{
+    margin-top: 1.5em;
+    background-color:  #45A6B8;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display:flex;
+    justify-content: space-around;
+    font-size: 0.7rem;
+}
+
+.button{
+    background-color: #224E96;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 1.5em;
+    display: inline-block;
+}
+
+
+
+.button:hover, .button:focus{
+    background-color: #45A6B8;
+}
+
+input , select {
+    width: 90%;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 1.5em;
+  }
+
+  label{
+      color:#224E96;
+      font-weight: bold;
+  }
+
+  form{
+    border-radius: 4px;
+    padding: 1em 2em;
+      width: 100%;
+      background-color: #e1edef;
+  }
+
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.content1{
+    width: 40%
+}
+.content2{
+    width: 55%;
+}
+
+ .img-button{
+     height: 1em;
+ }
+
+ table {
+    width: 100%;        
+    border-collapse: collapse;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-top: 1px solid #dee2e6;
+}
+tbody tr:nth-child(odd) {
+    background-color: #E1EDEF;
+}
+
+.card{
+    box-shadow: 5px 10px 18px #888888;
+    background-color: #E1EDEF;
+    padding: 2em;
+    border-radius: 8px;
+    margin-bottom: 4em;
+    margin-top: 1.5em;
+}
+
+.error-message{
+    color:red;
+    font-size: .7em;
+}
