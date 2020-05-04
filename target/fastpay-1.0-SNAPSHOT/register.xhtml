@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/templates/page-template.xhtml">
+        <ui:param name="pageTitle" value="REGISTER#{user.see}"/>
+        <ui:define name="page-content">
+
+            <div class="container flex">
+                <div class="content1">
+                    <h1 class="heading">
+                        REGISTER
+                    </h1>
+                    <h2 class="subheading">To get started</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+                        illo incidunt itaque, atque quasilaboriosam porro dolor animi
+                        voluptates. Doloribus, repellat? Cum repudiandae, dolore voluptatem
+                        quia ab et sit nulla.
+                    </p>
+                    <p><a href="login.html">Login</a> If you already have an account</p>
+                </div>
+
+                <div class="content2">
+                    <h:form>
+                        <h:outputText id="informationMessage" 
+                                      value="#{userAddBacking.infoMessage}" 
+                                      rendered="#{userAddBacking.infoMessage ne null}"
+                                      class="informationMessage">
+                        </h:outputText>
+
+                        <h:outputLabel for="firstName">First Name</h:outputLabel> 
+                        <h:inputText id="firstName" value="#{newUser.firstName}" required="true" requiredMessage="firstName is required"/>-->
+
+                        <h:outputLabel for="lastName">Last Name</h:outputLabel> 
+                        <h:inputText id="lastName" value="#{newUser.lastName}" required="true" requiredMessage="last name is required"/>
+
+                        <h:outputLabel for="email">Email</h:outputLabel> 
+                        <h:inputText id="email" value="#{newUser.id}" required="true" requiredMessage="please provide a valid email"/>
+
+                        <h:outputLabel for="currency">Currency</h:outputLabel> 
+                        <h:selectOneMenu id="currency" value="#{newUser.currency}" >
+                            <f:selectItem itemValue = "dollar" itemLabel = "Dollar"/>
+                            <f:selectItem itemValue = "naira" itemLabel = "Naira"/>
+                            <f:selectItem itemValue = "pounds" itemLabel = "Pounds"/>
+                            <f:selectItem itemValue = "euros" itemLabel = "Euros"/>
+                        </h:selectOneMenu>
+
+                        <h:outputLabel for="password">Password</h:outputLabel> 
+                        <h:inputSecret id="password"  value="#{newUser.password}" required="true" requiredMessage="password is required"/>
+
+                        <h:inputText id="accountBalance" value="#{newUser.accountBalance}" 
+                                     class="form-control" required="true">
+                            <f:passThroughAttribute name="placeHolder" value="Account Balance"/>
+                        </h:inputText>  
+
+                        <h:commandButton styleClass="button" value="REGISTER" action="#{userRegisterBacking.registerUser}"/> <br/>
+
+                    </h:form>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+

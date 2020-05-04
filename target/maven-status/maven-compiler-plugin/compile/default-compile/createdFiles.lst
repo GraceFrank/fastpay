@@ -1,14 +1,13 @@
 com\fastpay\fastpay\models\FastpayUser.class
+com\fastpay\fastpay\exceptions\UserAlreadyExistException.class
 com\fastpay\fastpay\models\PaymentRequest.class
 com\fastpay\fastpay\models\PaymentTransaction.class
 com\fastpay\fastpay\backing\UserRegisterBacking.class
 com\fastpay\fastpay\backing\JsfActivator.class
 com\fastpay\fastpay\JAXRSConfiguration.class
-com\fastpay\fastpay\exceptions\IllegalOrphanException.class
 com\fastpay\fastpay\backing\BaseBacking.class
 com\fastpay\fastpay\resources\JavaEE8Resource.class
-com\fastpay\fastpay\exceptions\PreexistingEntityException.class
+com\fastpay\fastpay\exceptions\UserNotFoundException.class
 com\fastpay\fastpay\services\FastpayUserManagerImpl.class
 com\fastpay\fastpay\Main.class
 com\fastpay\fastpay\services\FastpayUserManager.class
-com\fastpay\fastpay\exceptions\NonexistentEntityException.class
