@@ -26,18 +26,22 @@
                 <div class="content2">
                     <h:form>
                         <h:outputText id="informationMessage" 
-                                      value="#{userAddBacking.infoMessage}" 
-                                      rendered="#{userAddBacking.infoMessage ne null}"
-                                      class="informationMessage">
+                                      value="#{userRegisterBacking.infoMessage}" 
+                                      rendered="#{userRegisterBacking.infoMessage ne null}"
+                                      class="error-message">
                         </h:outputText>
+                        <br></br>
 
                         <h:outputLabel for="firstName">First Name</h:outputLabel> 
-                        <h:inputText id="firstName" value="#{newUser.firstName}" required="true" requiredMessage="firstName is required"/>-->
+                         <h:message for = "firstName" class = "error-message" /> 
+                        <h:inputText id="firstName" value="#{newUser.firstName}" required="true" requiredMessage="firstName is required"/>
 
-                        <h:outputLabel for="lastName">Last Name</h:outputLabel> 
+                        <h:outputLabel for="lastName">Last Name</h:outputLabel>
+                         <h:message for = "lastName" class = "error-message" /> 
                         <h:inputText id="lastName" value="#{newUser.lastName}" required="true" requiredMessage="last name is required"/>
 
-                        <h:outputLabel for="email">Email</h:outputLabel> 
+                        <h:outputLabel for="email">Email</h:outputLabel>
+                         <h:message for = "email" class = "error-message" /> 
                         <h:inputText id="email" value="#{newUser.id}" required="true" requiredMessage="please provide a valid email"/>
 
                         <h:outputLabel for="currency">Currency</h:outputLabel> 
@@ -48,7 +52,9 @@
                             <f:selectItem itemValue = "euros" itemLabel = "Euros"/>
                         </h:selectOneMenu>
 
-                        <h:outputLabel for="password">Password</h:outputLabel> 
+                       
+                        <h:outputLabel for="password">Password</h:outputLabel>  
+                        <h:message for = "password" class = "error-message" /> 
                         <h:inputSecret id="password"  value="#{newUser.password}" required="true" requiredMessage="password is required"/>
 
                         <h:inputText id="accountBalance" value="#{newUser.accountBalance}" 
@@ -56,7 +62,9 @@
                             <f:passThroughAttribute name="placeHolder" value="Account Balance"/>
                         </h:inputText>  
 
-                        <h:commandButton styleClass="button" value="REGISTER" action="#{userRegisterBacking.registerUser}"/> <br/>
+                        <h:commandButton styleClass="button" value="REGISTER" action="#{userRegisterBacking.registerUser}">
+                            <f:ajax execute="@form" render="@form"/>
+                        </h:commandButton><br/>
 
                     </h:form>
                 </div>

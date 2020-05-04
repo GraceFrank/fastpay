@@ -5,6 +5,8 @@
  */
 package com.fastpay.fastpay.services;
 
+import com.fastpay.fastpay.exceptions.UserAlreadyExistException;
+import com.fastpay.fastpay.exceptions.UserNotFoundException;
 import com.fastpay.fastpay.models.FastpayUser;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,7 @@ public class FastpayUserManagerImpl implements FastpayUserManager {
     EntityManager em;
 
     @Override
-    public FastpayUser getFastpayUser(String userId) throws Exception {
+    public FastpayUser getFastpayUser(String userId) throws UserNotFoundException {
 
         TypedQuery<FastpayUser> query = em.createQuery("SELECT DISTINCT fastpayUser FROM FastpayUser fastpayUser WHERE fastpayUser.id = :entityId ORDER BY fastpayUser.id", FastpayUser.class);
         query.setParameter("entityId", userId);
@@ -38,7 +40,7 @@ public class FastpayUserManagerImpl implements FastpayUserManager {
         try {
             fetchedUser = query.getSingleResult();
         } catch (NoResultException exception) {
-            throw new Exception("User not found");
+            throw new UserNotFoundException(exception.getMessage());
         }
 
         return fetchedUser;
@@ -49,17 +51,17 @@ public class FastpayUserManagerImpl implements FastpayUserManager {
 //    }
 
     @Override
-    public FastpayUser registerFastpayUser(FastpayUser user) throws Exception {
+    public FastpayUser registerFastpayUser(FastpayUser user) throws UserAlreadyExistException {
         Query query = em.createQuery("select a from FastpayUser a where a.id = :userId");
         
         query.setParameter("userId", user.getId());
         
         try{
             query.getSingleResult();
-            throw new Exception("user already exists");
+            throw new UserAlreadyExistException();
         }
         catch(NoResultException nre){
-             System.out.println("no user found");
+             Logger.getLogger(FastpayUserManager.class.getName()).log(Level.FINER, "No user found");
         }
       
         em.persist(user);  

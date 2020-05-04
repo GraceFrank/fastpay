@@ -5,6 +5,7 @@
  */
 package com.fastpay.fastpay.backing;
 
+import com.fastpay.fastpay.exceptions.UserAlreadyExistException;
 import com.fastpay.fastpay.models.FastpayUser;
 import com.fastpay.fastpay.services.FastpayUserManager;
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
+import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -33,6 +35,7 @@ public class UserRegisterBacking extends BaseBacking implements Serializable {
     private FastpayUser newUser = new FastpayUser();
 
     private String infoMessage;
+ 
 
     public String getInfoMessage() {
         return infoMessage;
@@ -47,9 +50,12 @@ public class UserRegisterBacking extends BaseBacking implements Serializable {
             userManager.registerFastpayUser(newUser);
             infoMessage = "User saved sucessfully";
             newUser = new FastpayUser();
+        }catch(UserAlreadyExistException uaeEx){
+             Logger.getLogger(UserRegisterBacking.class.getName()).log(Level.SEVERE, null, uaeEx);
+            infoMessage = "User Email already in use";
         } catch (Exception e) {
             Logger.getLogger(UserRegisterBacking.class.getName()).log(Level.SEVERE, null, e);
-            infoMessage = e.getMessage();
+                getContext().addMessage(null, new FacesMessage("An error occurs while registering user"));  
         }
 
         return null;

@@ -5,6 +5,8 @@
  */
 package com.fastpay.fastpay.services;
 
+import com.fastpay.fastpay.exceptions.UserAlreadyExistException;
+import com.fastpay.fastpay.exceptions.UserNotFoundException;
 import com.fastpay.fastpay.models.FastpayUser;
 import java.util.List;
 import javax.ejb.Local;
@@ -16,9 +18,9 @@ import javax.ejb.Local;
 
 @Local
 public interface FastpayUserManager {
-     public FastpayUser getFastpayUser(String userId) throws Exception;
+     public FastpayUser getFastpayUser(String userId) throws UserNotFoundException;
 //    public List<FastpayUser> getFastpayUsers();        
-    public FastpayUser registerFastpayUser(FastpayUser user) throws Exception;
+    public FastpayUser registerFastpayUser(FastpayUser user) throws UserAlreadyExistException;
     public void deleteFastpayUser(String userId) throws Exception;   
     
 }
