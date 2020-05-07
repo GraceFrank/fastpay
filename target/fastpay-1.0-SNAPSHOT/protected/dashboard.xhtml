@@ -10,13 +10,16 @@
         <ui:define name="page-content">
 
          <div class="container">
-        <h2 class="subheading">Welcome Back Grace</h2>
+        <h2 class="subheading">Welcome Back #{loginBacking.user.firstName}</h2>
 
         <div class="flex card">
 
           <div>
-              <h3>Account Balance</h3>
-            <h1 class="heading">#4000</h1>
+              <h3 class="subheading">Account Balance</h3>
+            <h1 class="heading">#{loginBacking.user.accountBalance}</h1>
+            <h2 class="subheading">Account Details</h2>
+            <p><strong>NAME: #{loginBacking.user.firstName} #{loginBacking.user.lastName}</strong></p>
+            <p><strong>EMAIL: #{loginBacking.userId}</strong></p>
           </div>
 
             <div class="">

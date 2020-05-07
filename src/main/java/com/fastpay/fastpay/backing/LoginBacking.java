@@ -30,6 +30,7 @@ public class LoginBacking extends BaseBacking implements Serializable {
     private String password;
     private String msg;
     private String userId;
+    private FastpayUser user;
 
     public String getPassword() {
         return password;
@@ -55,12 +56,21 @@ public class LoginBacking extends BaseBacking implements Serializable {
         this.userId = user;
     }
 
+    public FastpayUser getUser() {
+        return user;
+    }
+
+    public void setUser(FastpayUser user) {
+        this.user = user;
+    }
+
     //validate login
     public String validateUsernamePassword() {
         FastpayUser validUser = userManager.validateUser(userId, password);
         if (validUser != null) {
             HttpSession session = getSession();
             session.setAttribute("user", validUser);
+            user = validUser;
             return "success";
         } else {
             getContext().addMessage(
