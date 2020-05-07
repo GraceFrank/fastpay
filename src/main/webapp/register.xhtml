@@ -42,8 +42,10 @@
 
                         <h:outputLabel for="email">Email</h:outputLabel>
                          <h:message for = "email" class = "error-message" /> 
-                        <h:inputText id="email" value="#{newUser.id}" required="true" requiredMessage="please provide a valid email"/>
-
+                        <h:inputText id="email" value="#{newUser.id}" required="true" requiredMessage="please provide a valid email">
+                             <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                        </h:inputText>
+                         
                         <h:outputLabel for="currency">Currency</h:outputLabel> 
                         <h:selectOneMenu id="currency" value="#{newUser.currency}" >
                             <f:selectItem itemValue = "dollar" itemLabel = "Dollar"/>
@@ -57,10 +59,7 @@
                         <h:message for = "password" class = "error-message" /> 
                         <h:inputSecret id="password"  value="#{newUser.password}" required="true" requiredMessage="password is required"/>
 
-                        <h:inputText id="accountBalance" value="#{newUser.accountBalance}" 
-                                     class="form-control" required="true">
-                            <f:passThroughAttribute name="placeHolder" value="Account Balance"/>
-                        </h:inputText>  
+                      
 
                         <h:commandButton styleClass="button" value="REGISTER" action="#{userRegisterBacking.registerUser}">
                             <f:ajax execute="@form" render="@form"/>

@@ -67,12 +67,11 @@ public class FastpayUser implements Serializable {
         this.id = id;
     }
 
-    public FastpayUser(String id, String firstName, String lastName, String password, String currency, double accountBalance) {
+    public FastpayUser(String id, String firstName, String lastName, String password, String currency) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.accountBalance = accountBalance;
         this.currency = currency;
     }
 

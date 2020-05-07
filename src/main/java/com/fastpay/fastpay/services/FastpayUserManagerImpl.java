@@ -49,30 +49,49 @@ public class FastpayUserManagerImpl implements FastpayUserManager {
 //    @Override
 //    public List<FastpayUser> getFastpayUsers() {
 //    }
-
     @Override
     public FastpayUser registerFastpayUser(FastpayUser user) throws UserAlreadyExistException {
         Query query = em.createQuery("select a from FastpayUser a where a.id = :userId");
-        
+
+        user.setAccountBalance(4000);
+
         query.setParameter("userId", user.getId());
-        
-        try{
+
+        try {
             query.getSingleResult();
             throw new UserAlreadyExistException();
+
+        } catch (NoResultException nre) {
+            Logger.getLogger(FastpayUserManager.class.getName()).log(Level.FINER, "No user found");
         }
-        catch(NoResultException nre){
-             Logger.getLogger(FastpayUserManager.class.getName()).log(Level.FINER, "No user found");
-        }
-      
-        em.persist(user);  
-        em.flush();        
-        
+
+        em.persist(user);
+        em.flush();
+
         return user;
     }
 
     @Override
     public void deleteFastpayUser(String userId) throws Exception {
-        
+
+    }
+
+    @Override
+    public FastpayUser validateUser(String userID, String password) {
+        Query query = em.createQuery("select a from FastpayUser a where "
+                + "a.id = :userId and a.password = :password");
+
+        query.setParameter("userId", userID);
+        query.setParameter("password", password);
+
+        List<FastpayUser> result = query.getResultList();
+
+        if (result != null && result.size() > 0) {
+            return result.get(0);
+        }
+
+        return null;
+
     }
 
 }

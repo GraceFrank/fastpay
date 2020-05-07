@@ -9,6 +9,7 @@ package com.fastpay.fastpay.backing;
  *
  * @author grace.frank
  */
+import com.fastpay.fastpay.models.FastpayUser;
 import java.util.Map;
 import javax.el.ELContext;
 import javax.el.ValueExpression;
@@ -47,5 +48,12 @@ public class BaseBacking {
         targetExpression.setValue(elContext, value);
     }
     
+    	protected FastpayUser getUser() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		return (FastpayUser)session.getAttribute("user");
+	}
+
+	
     public static final String SYSTEM_ERROR = "System error ...";
 }

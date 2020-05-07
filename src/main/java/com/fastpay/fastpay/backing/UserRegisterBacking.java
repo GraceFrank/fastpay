@@ -50,6 +50,7 @@ public class UserRegisterBacking extends BaseBacking implements Serializable {
             userManager.registerFastpayUser(newUser);
             infoMessage = "User saved sucessfully";
             newUser = new FastpayUser();
+            return "success";
         }catch(UserAlreadyExistException uaeEx){
              Logger.getLogger(UserRegisterBacking.class.getName()).log(Level.SEVERE, null, uaeEx);
             infoMessage = "User Email already in use";

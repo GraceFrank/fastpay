@@ -22,5 +22,7 @@ public interface FastpayUserManager {
 //    public List<FastpayUser> getFastpayUsers();        
     public FastpayUser registerFastpayUser(FastpayUser user) throws UserAlreadyExistException;
     public void deleteFastpayUser(String userId) throws Exception;   
+
+    public FastpayUser validateUser(String user, String pwd);
     
 }
