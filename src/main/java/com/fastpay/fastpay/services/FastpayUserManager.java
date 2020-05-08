@@ -15,14 +15,18 @@ import javax.ejb.Local;
  *
  * @author grace.frank
  */
-
 @Local
 public interface FastpayUserManager {
-     public FastpayUser getFastpayUser(String userId) throws UserNotFoundException;
+
+    public FastpayUser getFastpayUser(String userId) throws UserNotFoundException;
 //    public List<FastpayUser> getFastpayUsers();        
+
     public FastpayUser registerFastpayUser(FastpayUser user) throws UserAlreadyExistException;
-    public void deleteFastpayUser(String userId) throws Exception;   
+
+    public void deleteFastpayUser(String userId) throws Exception;
 
     public FastpayUser validateUser(String user, String pwd);
+
+    public void updateUser(FastpayUser user) throws UserNotFoundException;
     
 }

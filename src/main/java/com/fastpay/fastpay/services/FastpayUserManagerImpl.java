@@ -94,4 +94,15 @@ public class FastpayUserManagerImpl implements FastpayUserManager {
 
     }
 
+    @Override
+    public void updateUser(FastpayUser user) throws UserNotFoundException {
+        FastpayUser updatabeleUser = em.find(FastpayUser.class, user.getId());
+
+        if (updatabeleUser == null) {
+            throw new UserNotFoundException();
+        }
+        em.merge(updatabeleUser);
+        em.flush();
+    }
+
 }

@@ -33,33 +33,36 @@
                         <br></br>
 
                         <h:outputLabel for="firstName">First Name</h:outputLabel> 
-                         <h:message for = "firstName" class = "error-message" /> 
+                        <h:message for = "firstName" class = "error-message" /> 
                         <h:inputText id="firstName" value="#{newUser.firstName}" required="true" requiredMessage="firstName is required"/>
 
                         <h:outputLabel for="lastName">Last Name</h:outputLabel>
-                         <h:message for = "lastName" class = "error-message" /> 
+                        <h:message for = "lastName" class = "error-message" /> 
                         <h:inputText id="lastName" value="#{newUser.lastName}" required="true" requiredMessage="last name is required"/>
 
                         <h:outputLabel for="email">Email</h:outputLabel>
-                         <h:message for = "email" class = "error-message" /> 
+                        <h:message for = "email" class = "error-message" /> 
                         <h:inputText id="email" value="#{newUser.id}" required="true" requiredMessage="please provide a valid email">
-                             <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                         </h:inputText>
-                         
+
                         <h:outputLabel for="currency">Currency</h:outputLabel> 
                         <h:selectOneMenu id="currency" value="#{newUser.currency}" >
-                            <f:selectItem itemValue = "dollar" itemLabel = "Dollar"/>
-                            <f:selectItem itemValue = "naira" itemLabel = "Naira"/>
-                            <f:selectItem itemValue = "pounds" itemLabel = "Pounds"/>
-                            <f:selectItem itemValue = "euros" itemLabel = "Euros"/>
+                            <f:selectItem itemValue = "USD" itemLabel = "USD"/>
+                            <f:selectItem itemValue = "CAD" itemLabel = "CAD"/>
+                            <f:selectItem itemValue = "AUD" itemLabel = "AUD"/>
+                            <f:selectItem itemValue = "EUR" itemLabel = "EUR"/>
+                            <f:selectItem itemValue = "NGN" itemLabel = "NGN"/>
+                            <f:selectItem itemValue = "JPY" itemLabel = "JPY"/>
+                            <f:selectItem itemValue = "GBP" itemLabel = "GBP"/>
                         </h:selectOneMenu>
 
-                       
+
                         <h:outputLabel for="password">Password</h:outputLabel>  
                         <h:message for = "password" class = "error-message" /> 
                         <h:inputSecret id="password"  value="#{newUser.password}" required="true" requiredMessage="password is required"/>
 
-                      
+
 
                         <h:commandButton styleClass="button" value="REGISTER" action="#{userRegisterBacking.registerUser}">
                             <f:ajax execute="@form" render="@form"/>

@@ -36,7 +36,7 @@ public class PaymentTransaction implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "TRANSACTION_DATE")
-    private Long transactionDate;
+    private String transactionDate;
 
     @Basic(optional = false)
     @Column(name = "PARTICIPANT")
@@ -54,7 +54,7 @@ public class PaymentTransaction implements Serializable {
         this.id = id;
     }
 
-    public PaymentTransaction(Long id, double transactionAmount, FastpayUser userId, Long transactionDate, String participant) {
+    public PaymentTransaction(Long id, double transactionAmount, FastpayUser userId, String transactionDate, String participant) {
         this.id = id;
         this.transactionAmount = transactionAmount;
         this.userId = userId;
@@ -79,11 +79,11 @@ public class PaymentTransaction implements Serializable {
         this.transactionAmount = transactionAmount;
     }
 
-    public Long getTransactionDate() {
+    public String getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(Long transactionDate) {
+    public void setTransactionDate(String transactionDate) {
         this.transactionDate = transactionDate;
     }
 
