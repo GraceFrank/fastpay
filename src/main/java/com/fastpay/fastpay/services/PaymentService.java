@@ -8,12 +8,14 @@ package com.fastpay.fastpay.services;
 import com.fastpay.fastpay.exceptions.InsuficientBalanceException;
 import com.fastpay.fastpay.exceptions.UserNotFoundException;
 import com.fastpay.fastpay.models.FastpayUser;
+import javax.ejb.Local;
 
 /**
  *
  * @author grace.frank
  */
+@Local
 public interface PaymentService {
-        public void sendMoney(String receiverId, FastpayUser sender, double amount) throws InsuficientBalanceException, UserNotFoundException;
+        public void sendMoney(String receiverId, FastpayUser sender, double amount, String description) throws InsuficientBalanceException, UserNotFoundException;
 
 }

@@ -42,7 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
     private TimeStamp timestamp;
 
     @Override
-    public void sendMoney(String reciverId, FastpayUser sender, double amount) throws UserNotFoundException, InsuficientBalanceException {
+    public void sendMoney(String reciverId, FastpayUser sender, double amount, String description) throws UserNotFoundException, InsuficientBalanceException {
         if (sender.getAccountBalance() < amount) {
             throw new InsuficientBalanceException();
         }
@@ -59,23 +59,30 @@ public class PaymentServiceImpl implements PaymentService {
             creditAlert.setUserId(receiver);
             creditAlert.setParticipant(sender.getId() + sender.getFirstName() + sender.getLastName());
             creditAlert.setTransactionDate(timestamp.getCurrentTime());
+            creditAlert.setDescription(description);
             transactionService.createTransaction(creditAlert);
+                        Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "I got here" );
+
+            
 
             sender.setAccountBalance(sender.getAccountBalance() - amount);
             //update sender account
             userManager.updateUser(sender);
+              Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "I debited sender" );
             //create transaction
             PaymentTransaction debitAlert = new PaymentTransaction();
             debitAlert.setTransactionAmount(amount);
             debitAlert.setUserId(sender);
             debitAlert.setParticipant(receiver.getId() + receiver.getFirstName() + receiver.getLastName());
             debitAlert.setTransactionDate(timestamp.getCurrentTime());
+            debitAlert.setDescription(description);
             transactionService.createTransaction(debitAlert);
+              Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "I created debit alert" );
 
         } catch (UserNotFoundException une) {
-            Logger.getLogger(PaymentService.class.getName()).log(Level.FINER, "No user found");
+            throw new UserNotFoundException();
         } catch (Exception e) {
-            Logger.getLogger(PaymentService.class.getName()).log(Level.FINER, "Error making payment" + e.getMessage());
+            Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "Error making payment" + e.getMessage());
         }
 
     }

@@ -17,7 +17,7 @@ public class UserNotFoundException extends Exception {
      private String message;
      
     public UserNotFoundException() {
-        this.message = "User already exists";
+        this.message = "User Not Found";
     }
 
     /**

@@ -39,6 +39,10 @@ public class PaymentTransaction implements Serializable {
     private String transactionDate;
 
     @Basic(optional = false)
+    @Column(name = "DESCRIPTION")
+    private String description;
+
+    @Basic(optional = false)
     @Column(name = "PARTICIPANT")
     private String participant;
 
@@ -54,12 +58,13 @@ public class PaymentTransaction implements Serializable {
         this.id = id;
     }
 
-    public PaymentTransaction(Long id, double transactionAmount, FastpayUser userId, String transactionDate, String participant) {
+    public PaymentTransaction(Long id, double transactionAmount, FastpayUser userId, String transactionDate, String participant, String description) {
         this.id = id;
         this.transactionAmount = transactionAmount;
         this.userId = userId;
         this.transactionDate = transactionDate;
         this.participant = participant;
+        this.description = description;
     }
 
     //GETTERS AND SETTERS
@@ -94,6 +99,16 @@ public class PaymentTransaction implements Serializable {
     public void setParticipant(String participant) {
         this.participant = participant;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    
 
     public FastpayUser getUserId() {
         return userId;

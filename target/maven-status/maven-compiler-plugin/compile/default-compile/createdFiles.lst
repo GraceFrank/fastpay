@@ -16,6 +16,7 @@ com\fastpay\fastpay\backing\AuthorizationFilter.class
 com\fastpay\fastpay\backing\BaseBacking.class
 com\fastpay\fastpay\utils\CurrencyFormatter.class
 com\fastpay\fastpay\resources\JavaEE8Resource.class
+com\fastpay\fastpay\backing\SendMoneyBacking.class
 com\fastpay\fastpay\exceptions\UserNotFoundException.class
 com\fastpay\fastpay\services\FastpayUserManagerImpl.class
 com\fastpay\fastpay\utils\CurrencyConverter.class
