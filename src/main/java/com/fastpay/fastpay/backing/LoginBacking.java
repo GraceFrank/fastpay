@@ -7,10 +7,12 @@ package com.fastpay.fastpay.backing;
 
 import com.fastpay.fastpay.models.FastpayUser;
 import com.fastpay.fastpay.services.FastpayUserManager;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
@@ -31,6 +33,7 @@ public class LoginBacking extends BaseBacking implements Serializable {
     private String msg;
     private String userId;
     private FastpayUser user;
+    private String menuItem = "out";
 
     public String getPassword() {
         return password;
@@ -64,6 +67,14 @@ public class LoginBacking extends BaseBacking implements Serializable {
         this.user = user;
     }
 
+    public String getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(String menuItem) {
+        this.menuItem = menuItem;
+    }
+
     //validate login
     public String validateUsernamePassword() {
         FastpayUser validUser = userManager.validateUser(userId, password);
@@ -71,6 +82,7 @@ public class LoginBacking extends BaseBacking implements Serializable {
             HttpSession session = getSession();
             session.setAttribute("user", validUser);
             user = validUser;
+            menuItem = "in";
             return "success";
         } else {
             getContext().addMessage(
@@ -83,9 +95,15 @@ public class LoginBacking extends BaseBacking implements Serializable {
     }
 
     //logout event, invalidate session
-    public String logout() {
+    public void logout() {
         HttpSession session = getSession();
         session.invalidate();
-        return "login";
+        menuItem = "out";
+        try {
+            ExternalContext eContext = getContext().getExternalContext();
+            eContext.redirect(eContext.getRequestContextPath() + "/login.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

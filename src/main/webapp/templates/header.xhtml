@@ -8,13 +8,12 @@
         <header>
             <hr width="70%" />
             <div class="header">
-                        <h:graphicImage class="logo" library="images" name="logo.jpg" alt="company logo"/>
-                        
-                <nav>
-                    <h:outputLink class="link-active" value="index.xhtml">HOME</h:outputLink>
-                    <h:outputLink  value="register.xhtml">REGISTER</h:outputLink>
-                    <h:outputLink  value="login.xhtml">LOGIN</h:outputLink>
-                </nav>
+                <h:graphicImage class="logo" library="images" name="logo.jpg" alt="company logo"/>
+
+
+                <ui:include src="logged-#{loginBacking.menuItem}-menu.xhtml"></ui:include>
+
+
             </div>
         </header>
     </ui:composition>

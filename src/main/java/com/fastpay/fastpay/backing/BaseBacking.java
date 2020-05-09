@@ -49,8 +49,7 @@ public class BaseBacking {
     }
     
     	protected FastpayUser getUser() {
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-				.getExternalContext().getSession(false);
+		HttpSession session = (HttpSession) getContext().getExternalContext().getSession(false);
 		return (FastpayUser)session.getAttribute("user");
 	}
 

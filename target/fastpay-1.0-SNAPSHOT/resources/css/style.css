@@ -157,3 +157,9 @@ tbody tr:nth-child(odd) {
     color:red;
     font-size: .7em;
 }
+
+.inline-form{
+    display: inline;
+    background-color: transparent;
+    padding: 0;
+}

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition>
+
+        <nav>
+
+            <h:outputLink class="link-active" value="/protected/dashboard.xhtml">DASHBOARD</h:outputLink>
+            <h:outputLink  value="/protected/transactions.xhtml">TRANSACTIONS</h:outputLink>
+            <h:outputLink  value="/protected/paymentrequests.xhtml">REQUESTS</h:outputLink>
+
+            <h:form styleClass="inline-form">
+                <h:commandLink   value="LOGOUT" action="#{loginBacking.logout}"/>
+            </h:form>
+        </nav>
+
+    </ui:composition>
+</html>
