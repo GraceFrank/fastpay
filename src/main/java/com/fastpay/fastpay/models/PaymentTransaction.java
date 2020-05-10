@@ -35,6 +35,10 @@ public class PaymentTransaction implements Serializable {
     private double transactionAmount;
 
     @Basic(optional = false)
+    @Column(name = "TRANSACTION_TYPE")
+    private String transactionType;
+
+    @Basic(optional = false)
     @Column(name = "TRANSACTION_DATE")
     private String transactionDate;
 
@@ -49,8 +53,8 @@ public class PaymentTransaction implements Serializable {
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private FastpayUser userId;
-
     //CONSTRUCTORS
+
     public PaymentTransaction() {
     }
 
@@ -107,8 +111,6 @@ public class PaymentTransaction implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
 
     public FastpayUser getUserId() {
         return userId;
@@ -116,6 +118,14 @@ public class PaymentTransaction implements Serializable {
 
     public void setUserId(FastpayUser userId) {
         this.userId = userId;
+    }
+
+    public String getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
     }
 
     @Override

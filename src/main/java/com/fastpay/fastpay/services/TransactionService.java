@@ -5,7 +5,9 @@
  */
 package com.fastpay.fastpay.services;
 
+import com.fastpay.fastpay.models.FastpayUser;
 import com.fastpay.fastpay.models.PaymentTransaction;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -16,4 +18,5 @@ import javax.ejb.Local;
 public interface TransactionService {
     
     public void createTransaction(PaymentTransaction transaction);
+    public List<PaymentTransaction> viewUserTransactions(FastpayUser user);
 }

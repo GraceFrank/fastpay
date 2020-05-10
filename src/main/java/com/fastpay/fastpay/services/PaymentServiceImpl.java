@@ -7,6 +7,7 @@ package com.fastpay.fastpay.services;
 
 import com.fastpay.fastpay.exceptions.InsuficientBalanceException;
 import com.fastpay.fastpay.exceptions.UserNotFoundException;
+import com.fastpay.fastpay.models.Constants;
 import com.fastpay.fastpay.models.FastpayUser;
 import com.fastpay.fastpay.models.PaymentTransaction;
 import com.fastpay.fastpay.utils.CurrencyConverter;
@@ -50,7 +51,7 @@ public class PaymentServiceImpl implements PaymentService {
         try {
             FastpayUser receiver = userManager.getFastpayUser(reciverId);
             double receivableAmount = currencyConverter.convert(sender.getCurrency(), receiver.getCurrency(), amount);
-            receiver.setAccountBalance(receivableAmount);
+            receiver.setAccountBalance(receivableAmount + receiver.getAccountBalance());
             //update receivers account
             userManager.updateUser(receiver);
             //create transaction alert
@@ -60,15 +61,14 @@ public class PaymentServiceImpl implements PaymentService {
             creditAlert.setParticipant(sender.getId() + sender.getFirstName() + sender.getLastName());
             creditAlert.setTransactionDate(timestamp.getCurrentTime());
             creditAlert.setDescription(description);
+            creditAlert.setTransactionType(Constants.CREDIT);
             transactionService.createTransaction(creditAlert);
-                        Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "I got here" );
-
-            
+            Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "I got here");
 
             sender.setAccountBalance(sender.getAccountBalance() - amount);
             //update sender account
             userManager.updateUser(sender);
-              Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "I debited sender" );
+            Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "I debited sender");
             //create transaction
             PaymentTransaction debitAlert = new PaymentTransaction();
             debitAlert.setTransactionAmount(amount);
@@ -76,8 +76,9 @@ public class PaymentServiceImpl implements PaymentService {
             debitAlert.setParticipant(receiver.getId() + receiver.getFirstName() + receiver.getLastName());
             debitAlert.setTransactionDate(timestamp.getCurrentTime());
             debitAlert.setDescription(description);
+            debitAlert.setTransactionType(Constants.DEBIT);
             transactionService.createTransaction(debitAlert);
-              Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "I created debit alert" );
+            Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "I created debit alert");
 
         } catch (UserNotFoundException une) {
             throw new UserNotFoundException();
