@@ -61,4 +61,13 @@
             <to-view-id>/protected/request-payment-successful.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+      <navigation-rule>
+        <from-view-id>/login-admin.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{loginBacking.adminLogin}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/protected/admin/dashboard.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

@@ -19,4 +19,5 @@ public interface TransactionService {
     
     public void createTransaction(PaymentTransaction transaction);
     public List<PaymentTransaction> viewUserTransactions(FastpayUser user);
+    public List<PaymentTransaction> getAllTransactions();
 }

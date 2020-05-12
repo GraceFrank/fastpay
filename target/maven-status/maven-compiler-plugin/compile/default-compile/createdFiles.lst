@@ -1,3 +1,4 @@
+com\fastpay\fastpay\backing\AdminBacking.class
 com\fastpay\fastpay\backing\LoginBacking.class
 com\fastpay\fastpay\services\PaymentRequestServiceImpl.class
 com\fastpay\fastpay\models\FastpayUser.class

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/templates/page-template.xhtml">
+        <ui:param name="pageTitle" value="Dashboard"/>
+        <ui:define name="page-content">
+
+            <div class="container">
+                <h2 class="subheading">FASTPAY TRANSACTIONS</h2>
+                <b/>
+
+                <h:dataTable value="#{adminBacking.transactions}" var="o" >
+
+                    <h:column>
+                        <!-- column header -->
+                        <f:facet name="header">DATE</f:facet>
+                        <!-- row record -->
+                        #{o.transactionDate}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">TYPE</f:facet>
+                            #{o.transactionType}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">AMOUNT</f:facet>
+                            #{o.transactionAmount}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">DESCRIPTION</f:facet>
+                            #{o.description}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">PARTICIPANT</f:facet>
+                            #{o.participant}
+                    </h:column>
+                </h:dataTable>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+</html>
+

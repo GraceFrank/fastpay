@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author grace.frank
+ * @author iben.labaran
  */
 @Named
 @SessionScoped
@@ -29,7 +29,7 @@ public class LoginBacking extends BaseBacking implements Serializable {
 
     @EJB
     private FastpayUserManager userManager;
-    
+
     DecimalFormat df = new DecimalFormat("###.###");
 
     private String password;
@@ -104,6 +104,24 @@ public class LoginBacking extends BaseBacking implements Serializable {
                             "Incorrect Username and Passowrd",
                             "Please enter correct username and Password"));
             return "login";
+        }
+    }
+
+    public String adminLogin() {
+        FastpayUser validUser = userManager.validateUser(userId, password);
+        if (validUser != null) {
+            HttpSession session = getSession();
+            session.setAttribute("user", validUser);
+            menuItem = "admin";
+            user = validUser;
+            return "success";
+        } else {
+            getContext().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Incorrect Username and Passowrd",
+                            "Please enter correct username and Password"));
+            return "login-admin";
         }
     }
 

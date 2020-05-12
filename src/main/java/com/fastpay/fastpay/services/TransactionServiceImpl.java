@@ -50,4 +50,17 @@ public class TransactionServiceImpl implements TransactionService {
         return null;
 
     }
+    
+    @Override 
+    public List<PaymentTransaction> getAllTransactions() {
+        Query query = em.createQuery("Select transactions from PaymentTransaction transactions", PaymentTransaction.class);
+
+        List<PaymentTransaction> result = query.getResultList();
+        if (result != null && result.size() > 0) {
+            return result;
+        }
+
+        return null;
+
+    }
 }

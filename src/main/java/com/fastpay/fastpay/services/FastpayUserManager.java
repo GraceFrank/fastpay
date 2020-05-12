@@ -29,4 +29,6 @@ public interface FastpayUserManager {
 
     public void updateUser(FastpayUser user) throws UserNotFoundException;
     
+    public List<FastpayUser> getAllUsers();
+    
 }

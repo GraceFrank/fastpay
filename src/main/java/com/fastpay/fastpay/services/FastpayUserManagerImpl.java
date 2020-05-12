@@ -112,4 +112,16 @@ public class FastpayUserManagerImpl implements FastpayUserManager {
         em.flush();
     }
 
+    @Override 
+    public List<FastpayUser> getAllUsers() {
+        Query query = em.createQuery("Select users from FastpayUser users", FastpayUser.class);
+
+        List<FastpayUser> result = query.getResultList();
+        if (result != null && result.size() > 0) {
+            return result;
+        }
+
+        return null;
+
+    }
 }
