@@ -21,12 +21,12 @@ import javax.persistence.Table;
  * @author grace.frank
  */
 @Entity
-@Table(name = "PAYMENT_REQUEST")
+@Table(name = "PAYMENT_REQUESTS")
 public class PaymentRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Basic(optional = false)
@@ -34,8 +34,8 @@ public class PaymentRequest implements Serializable {
     private double requestAmount;
 
     @Basic(optional = false)
-    @Column(name = "type")
-    private String type;
+    @Column(name = "REQUEST_TYPE")
+    private String requestType;
 
     @Basic(optional = false)
     @Column(name = "REQUEST_STATUS")
@@ -43,11 +43,15 @@ public class PaymentRequest implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "REQUEST_DATE")
-    private Long requestDate;
+    private String requestDate;
 
     @Basic(optional = false)
     @Column(name = "PARTICIPANT")
     private String Participant;
+    
+     @Basic(optional = false)
+    @Column(name = "DESCRIPTION")
+    private String description;
 
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
@@ -61,14 +65,16 @@ public class PaymentRequest implements Serializable {
         this.id = id;
     }
 
-    public PaymentRequest(Long id, double requestAmount, String type, String requestStatus, Long requestDate, String Participant, FastpayUser userId) {
+    public PaymentRequest(Long id, double requestAmount, String type, String requestStatus, 
+                    String requestDate, String Participant, FastpayUser userId, String description) {
         this.id = id;
         this.requestAmount = requestAmount;
-        this.type = type;
+        this.requestType = type;
         this.requestStatus = requestStatus;
         this.requestDate = requestDate;
         this.Participant = Participant;
         this.userId = userId;
+        this.description = description;
     }
 
     //GETTERS AND SETTERS
@@ -88,12 +94,12 @@ public class PaymentRequest implements Serializable {
         this.requestAmount = requestAmount;
     }
 
-    public String getType() {
-        return type;
+    public String getRequestType() {
+        return requestType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
     }
 
     public String getRequestStatus() {
@@ -104,11 +110,11 @@ public class PaymentRequest implements Serializable {
         this.requestStatus = requestStatus;
     }
 
-    public Long getRequestDate() {
+    public String getRequestDate() {
         return requestDate;
     }
 
-    public void setRequestDate(Long requestDate) {
+    public void setRequestDate(String requestDate) {
         this.requestDate = requestDate;
     }
 
@@ -118,6 +124,14 @@ public class PaymentRequest implements Serializable {
 
     public void setParticipant(String Participant) {
         this.Participant = Participant;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public FastpayUser getUserId() {

@@ -163,3 +163,6 @@ tbody tr:nth-child(odd) {
     background-color: transparent;
     padding: 0;
 }
+.red{
+    background-color: #fca753;
+}

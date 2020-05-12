@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/templates/page-template.xhtml">
+        <ui:param name="pageTitle" value="Transactions"/>
+        <ui:define name="page-content">
+
+            <div class="container flex">
+                <div class="content1">
+                    <h1 class="heading">
+                        REQUEST PAYMENT
+                    </h1>
+                    <h:graphicImage library="images" name="request-money.png" alt="Hand droping coin in another hand"/>
+
+                </div>
+                <div class="content2">
+
+                    <h2 class="subheading">Enter Request Details </h2>
+
+                    <h:form>
+                        <h:outputText id="informationMessage" 
+                                      value="#{paymentRequestBacking.infoMessage}" 
+                                      rendered="#{paymentRequestBacking.infoMessage ne null}"
+                                      class="error-message">
+                        </h:outputText>
+                        <br/>
+                            <h:outputLabel for="account">User Account</h:outputLabel> 
+                            <h:message for = "account" class = "error-message" /> 
+                            <h:inputText id="account" value="#{paymentRequestBacking.accountId}" required="true" requiredMessage="please provide a valid email">
+                                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                            </h:inputText>
+
+                            <h:outputLabel for="amount">Amount</h:outputLabel> 
+                            <h:message for = "amount" class = "error-message" /> 
+                            <h:inputText id="amount" value="#{paymentRequestBacking.amount}" required="true" requiredMessage="please provide a valid amount">
+                                 <f:validateDoubleRange minimum="5.0"/>
+                            </h:inputText>
+
+
+                            <h:outputLabel for="description">Description</h:outputLabel> 
+                            <h:message for = "description" class = "error-message" /> 
+                            <h:inputText value="#{paymentRequestBacking.description}" id="description" required="true" requiredMessage="Description is required"/>
+
+                            <h:commandButton styleClass="button" value="SEND PAYMENT REQUEST" action="#{paymentRequestBacking.sendPaymentRequest}">
+                                <f:ajax execute="@form" render="@form"/>
+                            </h:commandButton><br/>
+                    </h:form>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+

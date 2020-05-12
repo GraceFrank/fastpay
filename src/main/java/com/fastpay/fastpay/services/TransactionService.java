@@ -12,7 +12,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author grace.frank
+ * @author iben.labaran
  */
 @Local
 public interface TransactionService {

@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/templates/page-template.xhtml">
+        <ui:param name="pageTitle" value="Dashboard"/>
+        <ui:define name="page-content">
+
+            <div class="container">
+
+                <h2 class="subheading">Payment Requests</h2>
+                <b/>
+                <h3>PENDING ACQUIRED REQUESTS</h3>
+                <b/>
+                <h:outputText id="informationMessage" 
+                              value="#{paymentRequestBacking.infoMessage}" 
+                              rendered="#{paymentRequestBacking.infoMessage ne null}"
+                              class="error-message">
+                </h:outputText>
+
+
+                <h:dataTable value="#{paymentRequestBacking.pendingAcquiredRequests}" var="o"
+                             rendered="#{paymentRequestBacking.pendingAcquiredRequests ne null}">
+
+                    <h:column>
+                        <!-- column header -->
+                        <f:facet name="header">DATE</f:facet>
+                        <!-- row record -->
+                        #{o.requestDate}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">TYPE</f:facet>
+                            #{o.requestType}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">AMOUNT</f:facet>
+                            #{o.requestAmount}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">STATUS</f:facet>
+                            #{o.requestStatus}
+                    </h:column>  
+
+                    <h:column>
+                        <f:facet name="header">DESCRIPTION</f:facet>
+                            #{o.description}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">PARTICIPANT</f:facet>
+                            #{o.participant}
+                    </h:column>                       
+
+                    <h:column>
+                        <f:facet name="header">Action</f:facet>
+                        <h:form styleClass="inline-form">
+                            <h:commandButton action="#{paymentRequestBacking.approveRequest(o.id)}"
+                                             styleClass="button" value="APPROVE" />
+                            <h:commandButton action="#{paymentRequestBacking.rejectRequest(o.id)}"
+                                             styleClass="button red" value="REJECT" />
+                        </h:form>
+                    </h:column>  
+                </h:dataTable>
+                <b/>
+
+                <h3>PENDING ISSUED REQUESTS</h3>
+                <b/>
+
+                <h:dataTable value="#{paymentRequestBacking.pendingIssuedRequests}" var="o"
+                             rendered="#{paymentRequestBacking.pendingIssuedRequests ne null}">
+
+                    <h:column>
+                        <!-- column header -->
+                        <f:facet name="header">DATE</f:facet>
+                        <!-- row record -->
+                        #{o.requestDate}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">TYPE</f:facet>
+                            #{o.requestType}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">AMOUNT</f:facet>
+                            #{o.requestAmount}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">STATUS</f:facet>
+                            #{o.requestStatus}
+                    </h:column>  
+
+                    <h:column>
+                        <f:facet name="header">DESCRIPTION</f:facet>
+                            #{o.description}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">PARTICIPANT</f:facet>
+                            #{o.participant}
+                    </h:column>                       
+
+                </h:dataTable>
+                <b/>
+                <h3>RESOLVED REQUESTS</h3>
+                <b/>
+
+                <h:dataTable value="#{paymentRequestBacking.resolvedPaymentRequests}" var="o"
+                             rendered="#{paymentRequestBacking.resolvedPaymentRequests ne null}">
+
+                    <h:column>
+                        <!-- column header -->
+                        <f:facet name="header">DATE</f:facet>
+                        <!-- row record -->
+                        #{o.requestDate}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">TYPE</f:facet>
+                            #{o.requestType}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">AMOUNT</f:facet>
+                            #{o.requestAmount}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">STATUS</f:facet>
+                            #{o.requestStatus}
+                    </h:column>  
+
+                    <h:column>
+                        <f:facet name="header">DESCRIPTION</f:facet>
+                            #{o.description}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">PARTICIPANT</f:facet>
+                            #{o.participant}
+                    </h:column>                       
+
+                </h:dataTable>
+
+            </div>
+
+        </ui:define>
+    </ui:composition>
+</html>
+

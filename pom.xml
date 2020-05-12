@@ -23,9 +23,15 @@
             <version>${jakartaee}</version>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>org.decimal4j</groupId>
+            <artifactId>decimal4j</artifactId>
+            <version>1.0.3</version>
+        </dependency>
     </dependencies>
     
-     <build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -15,19 +15,18 @@ import com.fastpay.fastpay.utils.TimeStamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
 /**
  *
- * @author grace.frank
+ * @author iben.labaran
  */
-@Stateful
+@Stateless
 public class PaymentServiceImpl implements PaymentService {
 
-    @PersistenceContext(unitName = "fastpayUnit", type = PersistenceContextType.EXTENDED)
+    @PersistenceContext(unitName = "fastpayUnit")
     EntityManager em;
 
     @EJB
@@ -58,17 +57,15 @@ public class PaymentServiceImpl implements PaymentService {
             PaymentTransaction creditAlert = new PaymentTransaction();
             creditAlert.setTransactionAmount(receivableAmount);
             creditAlert.setUserId(receiver);
-            creditAlert.setParticipant(sender.getId() + sender.getFirstName() + sender.getLastName());
+            creditAlert.setParticipant(sender.getId() +" " + sender.getFirstName() + " " +sender.getLastName());
             creditAlert.setTransactionDate(timestamp.getCurrentTime());
             creditAlert.setDescription(description);
             creditAlert.setTransactionType(Constants.CREDIT);
             transactionService.createTransaction(creditAlert);
-            Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "I got here");
 
             sender.setAccountBalance(sender.getAccountBalance() - amount);
             //update sender account
             userManager.updateUser(sender);
-            Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "I debited sender");
             //create transaction
             PaymentTransaction debitAlert = new PaymentTransaction();
             debitAlert.setTransactionAmount(amount);
@@ -78,7 +75,6 @@ public class PaymentServiceImpl implements PaymentService {
             debitAlert.setDescription(description);
             debitAlert.setTransactionType(Constants.DEBIT);
             transactionService.createTransaction(debitAlert);
-            Logger.getLogger(PaymentService.class.getName()).log(Level.SEVERE, "I created debit alert");
 
         } catch (UserNotFoundException une) {
             throw new UserNotFoundException();

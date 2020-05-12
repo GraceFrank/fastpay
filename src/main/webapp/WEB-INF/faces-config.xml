@@ -52,4 +52,13 @@
             <to-view-id>/protected/paymentsuccessful.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+      <navigation-rule>
+        <from-view-id>/protected/requestpayment.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{paymentRequestBacking.sendPaymentRequest}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/protected/request-payment-successful.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

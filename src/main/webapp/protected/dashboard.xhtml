@@ -9,34 +9,34 @@
         <ui:param name="pageTitle" value="Dashboard"/>
         <ui:define name="page-content">
 
-         <div class="container">
-        <h2 class="subheading">Welcome Back #{loginBacking.user.firstName}</h2>
+            <div class="container">
+                <h2 class="subheading">Welcome Back #{loginBacking.user.firstName}</h2>
 
-        <div class="flex card">
+                <div class="flex card">
 
-          <div>
-              <h3 class="subheading">Account Balance</h3>
-            <h1 class="heading">#{loginBacking.user.accountBalance}</h1>
-            <h2 class="subheading">Account Details</h2>
-            <p><strong>NAME: #{loginBacking.user.firstName} #{loginBacking.user.lastName}</strong></p>
-            <p><strong>EMAIL: #{loginBacking.userId}</strong></p>
-          </div>
+                    <div>
+                        <h3 class="subheading">Account Balance</h3>
+                        <h1 class="heading"> #{loginBacking.user.currency} #{loginBacking.formatedBalance}</h1>
+                        <h2 class="subheading">Account Details</h2>
+                        <p><strong>NAME: #{loginBacking.user.firstName} #{loginBacking.user.lastName}</strong></p>
+                        <p><strong>EMAIL: #{loginBacking.userId}</strong></p>
+                    </div>
 
-            <div class="">
-                <h:link styleClass="button" value="SendMoney" outcome="sendmoney.xhtml">
-                    <h:graphicImage library="images" styleClass="img-button"  name="payment-icon.png"/>
-                </h:link>
-                <b/>
-                <h:link styleClass="button" outcome="requstpayment.xhtml" value="Payment Request">
-                    <h:graphicImage library="images" name="request-icon.png" styleClass="img-button"/>
-                </h:link>
-                 <b/>
-                <h:link styleClass="button" outcome="transactions.xhtml" value="Transactions">
-                    <h:graphicImage library="images" name="transactions-icon.png" styleClass="img-button"/>
-                </h:link>
+                    <div class="">
+                        <h:link styleClass="button" value="SendMoney" outcome="sendmoney.xhtml">
+                            <h:graphicImage library="images" styleClass="img-button"  name="payment-icon.png"/>
+                        </h:link>
+                        <b/>
+                        <h:link styleClass="button" outcome="requestpayment.xhtml" value="Payment Request">
+                            <h:graphicImage library="images" name="request-icon.png" styleClass="img-button"/>
+                        </h:link>
+                        <b/>
+                        <h:link styleClass="button" outcome="transactions.xhtml" value="Transactions">
+                            <h:graphicImage library="images" name="transactions-icon.png" styleClass="img-button"/>
+                        </h:link>
+                    </div>
+                </div>
             </div>
-          </div>
-         </div>
         </ui:define>
     </ui:composition>
 </html>

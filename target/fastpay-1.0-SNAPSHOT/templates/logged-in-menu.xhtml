@@ -7,11 +7,9 @@
     <ui:composition>
 
         <nav>
-
-            <h:outputLink class="link-active" value="/protected/dashboard.xhtml">DASHBOARD</h:outputLink>
-            <h:outputLink  value="/protected/transactions.xhtml">TRANSACTIONS</h:outputLink>
-            <h:outputLink  value="/protected/paymentrequests.xhtml">REQUESTS</h:outputLink>
-
+            <h:link value="DASHBOARD" outcome="dashboard" class="link-active"/>
+            <h:link value="TRANSACTIONS" outcome="transactions" />
+            <h:link value="REQUESTS" outcome="view-payment-requests" />
             <h:form styleClass="inline-form">
                 <h:commandLink   value="LOGOUT" action="#{loginBacking.logout}"/>
             </h:form>

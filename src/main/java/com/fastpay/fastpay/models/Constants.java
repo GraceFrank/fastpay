@@ -10,7 +10,14 @@ package com.fastpay.fastpay.models;
  * @author grace.frank
  */
 public interface Constants {
-      public static String CREDIT = "CREDIT";
+
+    public static String CREDIT = "CREDIT";
     public static String DEBIT = "DEBIT";
-    
+
+    public static String REQUEST_TYPE_ACQUIRED = "ACQUIRED";
+    public static String REQUEST_TYPE_ISSUED = "ISSUED";
+
+    public static String REQUEST_STATUS_PENDING = "PENDING";
+    public static String REQUEST_STATUS_ACCEPTED = "ACCEPTED";
+    public static String REQUEST_STATUS_REJECTED = "REJECTED";
 }

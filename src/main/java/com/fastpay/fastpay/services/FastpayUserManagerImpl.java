@@ -8,10 +8,11 @@ package com.fastpay.fastpay.services;
 import com.fastpay.fastpay.exceptions.UserAlreadyExistException;
 import com.fastpay.fastpay.exceptions.UserNotFoundException;
 import com.fastpay.fastpay.models.FastpayUser;
-import java.util.ArrayList;
+import com.fastpay.fastpay.utils.CurrencyConverter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -28,6 +29,10 @@ public class FastpayUserManagerImpl implements FastpayUserManager {
 
     @PersistenceContext(unitName = "fastpayUnit")
     EntityManager em;
+    
+    @EJB
+    private CurrencyConverter currencyConverter;
+
 
     @Override
     public FastpayUser getFastpayUser(String userId) throws UserNotFoundException {
@@ -52,9 +57,10 @@ public class FastpayUserManagerImpl implements FastpayUserManager {
     @Override
     public FastpayUser registerFastpayUser(FastpayUser user) throws UserAlreadyExistException {
         Query query = em.createQuery("select a from FastpayUser a where a.id = :userId");
-
-        user.setAccountBalance(4000);
-
+        
+        double balance = currencyConverter.convert("USD", user.getCurrency(), 4000);
+        user.setAccountBalance(balance);
+        
         query.setParameter("userId", user.getId());
 
         try {
@@ -64,6 +70,7 @@ public class FastpayUserManagerImpl implements FastpayUserManager {
         } catch (NoResultException nre) {
             Logger.getLogger(FastpayUserManager.class.getName()).log(Level.FINER, "No user found");
         }
+        
 
         em.persist(user);
         em.flush();

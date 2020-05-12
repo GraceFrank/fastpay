@@ -9,6 +9,7 @@ import com.fastpay.fastpay.models.FastpayUser;
 import com.fastpay.fastpay.services.FastpayUserManager;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -28,12 +29,15 @@ public class LoginBacking extends BaseBacking implements Serializable {
 
     @EJB
     private FastpayUserManager userManager;
+    
+    DecimalFormat df = new DecimalFormat("###.###");
 
     private String password;
     private String msg;
     private String userId;
     private FastpayUser user;
     private String menuItem = "out";
+    private String formatedBalance;
 
     public String getPassword() {
         return password;
@@ -67,6 +71,14 @@ public class LoginBacking extends BaseBacking implements Serializable {
         this.user = user;
     }
 
+    public String getFormatedBalance() {
+        return formatedBalance;
+    }
+
+    public void setFormatedBalance(String formatedBalance) {
+        this.formatedBalance = formatedBalance;
+    }
+
     public String getMenuItem() {
         return menuItem;
     }
@@ -82,6 +94,7 @@ public class LoginBacking extends BaseBacking implements Serializable {
             HttpSession session = getSession();
             session.setAttribute("user", validUser);
             user = validUser;
+            formatedBalance = df.format(user.getAccountBalance());
             menuItem = "in";
             return "success";
         } else {
