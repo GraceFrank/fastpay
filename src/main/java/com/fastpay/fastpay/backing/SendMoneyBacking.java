@@ -19,7 +19,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author grace.frank
+ * @author Iben Labaran
  */
 @Named
 @RequestScoped

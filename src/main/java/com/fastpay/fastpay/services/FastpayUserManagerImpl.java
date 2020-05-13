@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author grace.frank
+ * @author Iben Labaran
  */
 @Stateless
 public class FastpayUserManagerImpl implements FastpayUserManager {

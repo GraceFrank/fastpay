@@ -7,7 +7,7 @@ package com.fastpay.fastpay.backing;
 
 /**
  *
- * @author grace.frank
+ * @author Iben Labaran
  */
 import com.fastpay.fastpay.models.FastpayUser;
 import java.util.Map;

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author iben.labaran
+ * @author Iben Labaran
  */
 @Named
 @SessionScoped

@@ -10,7 +10,7 @@ import javax.faces.annotation.FacesConfig;
 
 /**
  *
- * @author grace.frank
+ * @author Iben Labaran
  */
 
 @ApplicationScoped

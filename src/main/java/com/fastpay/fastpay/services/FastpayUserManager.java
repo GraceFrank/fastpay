@@ -13,7 +13,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author grace.frank
+ * @author Iben Labaran
  */
 @Local
 public interface FastpayUserManager {

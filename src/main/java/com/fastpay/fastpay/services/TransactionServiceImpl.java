@@ -17,7 +17,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author grace.frank
+ * @author Iben Labaran
  */
 @Stateless
 public class TransactionServiceImpl implements TransactionService {

@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
 
 /**
  *
- * @author grace.frank
+ * @author Iben Labaran
  */
 @Stateless
 public class TimeStamp {

@@ -7,7 +7,7 @@ package com.fastpay.fastpay.exceptions;
 
 /**
  *
- * @author grace.frank
+ * @author Iben Labaran
  */
 
 import javax.ejb.ApplicationException;

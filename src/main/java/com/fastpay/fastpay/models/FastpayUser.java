@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author grace.frank
+ * @author Iben Labaran
  */
 @Entity
 @Table(name = "FASTPAY_USER")

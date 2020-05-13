@@ -7,7 +7,7 @@ package com.fastpay.fastpay.models;
 
 /**
  *
- * @author grace.frank
+ * @author Iben Labaran
  */
 public interface Constants {
 
@@ -20,4 +20,7 @@ public interface Constants {
     public static String REQUEST_STATUS_PENDING = "PENDING";
     public static String REQUEST_STATUS_ACCEPTED = "ACCEPTED";
     public static String REQUEST_STATUS_REJECTED = "REJECTED";
+    
+    public static String USER_GROUP_ADMIN="ADMIN";
+    public static String USER_GROUP_USER="USER";
 }

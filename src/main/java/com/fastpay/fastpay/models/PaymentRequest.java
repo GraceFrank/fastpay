@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author grace.frank
+ * @author Iben Labaran
  */
 @Entity
 @Table(name = "PAYMENT_REQUESTS")
